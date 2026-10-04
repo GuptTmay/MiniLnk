@@ -18,12 +18,14 @@ import { AuthProvider } from '@/context/AuthContext';
 import { ProtectedRoute } from '@/routes/ProtectedRoute';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { NotFound } from './pages/NotFound';
+import { BackendWakeup } from '@/components/BackendWakeup';
 
 function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <AuthProvider>
         <Toaster position="bottom-right" />
+        <BackendWakeup />
         <BrowserRouter>
           <Routes>
             {/* Public Routes */}
