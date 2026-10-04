@@ -73,7 +73,11 @@ QrCode Details
 ## Setup
 See **[SETUP.md](SETUP.md)** for install, dev server, worker, and benchmark instructions.
 
-## Future Plans
-
-- Microsoft, GitHub, and other OAuth providers
-- File/image/video links
+## Issues 
+- **Cache Invalidation**: When a link is updated or deleted, the corresponding cache entry in Redis must be invalidated to prevent stale data from being served. 
+- **Gracefully handle redis crash**
+- **Analytics Idempotency**: Add a unique id to all analytics events to prevent duplicate processing in case of retries or failures. 
+- **Cache Stampede Protection of Redirection endpoint**: 
+  - Implement a locking mechanism to prevent multiple requests from hitting the database simultaneously when a cache miss occurs. 
+  - Use a library like Redlock or implement a custom solution to ensure that only one request can fetch and cache the data at a time, while others wait for the cache to be populated. 
+- **Redis eviction policy**
